@@ -27,7 +27,8 @@ class Combat(
     // Méthode pour exécuter le combat complet
     fun executerCombat() {
         println("Début du combat : ${this.jeu.joueur.nom} vs ${monstre.nom}")
-        var tourJoueur = true
+        //La vitesse indique qui commence
+        var tourJoueur = this.jeu.joueur.vitesse >= this.monstre.vitesse
         //Tant que le joueur et le monstre sont vivants
         while (this.jeu.joueur.pointDeVie > 0 && monstre.pointDeVie > 0) {
             println("Tours de jeu : ${nombreTours}")
