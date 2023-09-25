@@ -11,13 +11,13 @@ package personnage
 ) {
 
      fun calculeDefense():Int{
-         //TODO
+         //TODO Mission 4.2
         return this.defense/2;
      }
 
      // Méthode pour attaquer un adversaire
      fun attaque(adversaire: Personnage) {
-        //TODO Mission 3.1
+        //TODO Mission 4.1
        val degats= this.attaque/2
          adversaire.pointDeVie-=degats
         println("$nom attaque ${adversaire.nom} avec une attaque de base et inflige $degats points de dégâts.")
