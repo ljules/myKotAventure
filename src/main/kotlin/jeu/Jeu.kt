@@ -6,7 +6,7 @@ import personnage.Personnage
 
 class Jeu(monstres: List<Personnage>) {
     lateinit var joueur: Personnage
-     var combats: MutableList<Combat> = mutableListOf()
+    var combats: MutableList<Combat> = mutableListOf()
     var score: Int = 0
 
     // Corps du constructeur
@@ -41,12 +41,41 @@ class Jeu(monstres: List<Personnage>) {
      *
      */
     fun creerPersonnage(): Personnage {
+        val PTS_TOTAL = 40
         println("Création votre personnage:")
+
         // TODO Mission 1.1
-        val hero = Personnage("YYY",150,150,12,8,8,12)
-        this.joueur= hero
+        println("${ANSI_PURPLE}${ANSI_BOLD}${ANSI_UNDERLINE}Création de votre personnage :${ANSI_RESET}\n")
+        print("Saisir le nom de votre personnage : ")
+        val nom = readln()
+
+        var attaque: Int
+        var defense: Int
+        var endurance: Int
+        var vitesse: Int
+
+        do {
+            println("\nDistribuer ${ANSI_BOLD}40 pts au maximum${ANSI_RESET} sur les 4 critères suivants :")
+            print("\tAttaque (${40} pts restant) : ")
+            attaque = readln().toInt()
+            print("\tDéfense (${PTS_TOTAL - attaque} pts restant) : ")
+            defense = readln().toInt()
+            print("\tendurance (${PTS_TOTAL - attaque - defense} pts restant) : ")
+            endurance = readln().toInt()
+            print("\tVitesse (${PTS_TOTAL - attaque - defense - endurance} pts restant) : ")
+            vitesse = readln().toInt()
+
+            val validation = (PTS_TOTAL - attaque - defense - endurance - vitesse) < 0
+            println(if (validation) "\n${ANSI_RED}${ANSI_RAPID_BLINK}Mauvaise répartition...${ANSI_RESET} \nrecommencer la saisie.\n" else "${ANSI_BOLD}${ANSI_GREEN}\nRépartition validée !${ANSI_RESET}\n")
+        } while(validation)
+
+        val pointDeVieMax = 100 + 10 * endurance
+        val hero = Personnage(  nom, pointDeVieMax,pointDeVieMax,
+                                attaque, defense,
+                                endurance, vitesse
+        )
+        this.joueur = hero
         return hero
     }
-    
 
 }
