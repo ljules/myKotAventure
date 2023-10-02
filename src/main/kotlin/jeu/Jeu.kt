@@ -1,6 +1,8 @@
 package jeu
 
 import personnage.Personnage
+import edict
+import leManteauDeLaNuit
 
 
 
@@ -70,9 +72,11 @@ class Jeu(monstres: List<Personnage>) {
         } while(validation)
 
         val pointDeVieMax = 100 + 10 * endurance
-        val hero = Personnage(  nom, pointDeVieMax,pointDeVieMax,
-                                attaque, defense,
-                                endurance, vitesse
+        val hero = Personnage(
+            nom, pointDeVieMax,pointDeVieMax,
+            attaque, defense,
+            endurance, vitesse,
+            edict ,leManteauDeLaNuit
         )
         this.joueur = hero
         return hero
